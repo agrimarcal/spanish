@@ -1,0 +1,172 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Instrucciones para actualizar Zikula</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"  />
+</head>
+
+<body>
+
+<p><strong>NOTA:  ESTE DOCUMENTO CONTIENE INFORMACIÓN IMPORTANTE ACERCA DE ZIKULA.  POR FAVOR LÉELO TODO
+       ANTES DE CONTINUAR.</strong></p>
+
+<!--
+<div style="border: 1px dotted black; margin: 10px; padding: 5px; text-align: center;">
+Esta versi&oacute;n de Zikula es un Release Candidate (RC) y todav&iacute;a no est&aacute; destinado para su uso en sitios web
+en producci&oacute;n. Est&aacute; destinada para prop&oacute;sitos de desarrollo y pruebas.<br />
+Por favor pru&eacute;bala y reporta los errores/bugs al <a href="http://code.zikula.org/core/">tracker</a>.  
+Mientras m&aacute;s bugs sean identificados, m&aacute;s r&aacute;pido tendremos la versi&oacute;n final.<br />
+</div>
+-->
+
+<h1>Instrucciones de actualizaci&oacute;n de Zikula</h1>
+<p>Documentaci&oacute;n m&aacute;s detallada est&aacute; disponible en el  
+<a href="http://community.zikula.org/Wiki-tag-UserDocs.htm" title="Wiki de documentaci&oacute;n">Wiki de documentaci&oacute;n</a> en 
+<a href="http://community.zikula.org" title="Comunidad Zikula">http://community.zikula.org</a>.  
+Soporte y ayuda con la actualizaci&oacute;n a Zikula v1.0 puede ser obtenida en la <a href="http://www.dev-zikula.com">Comunidad Hispana de Zikula</a>.</p>
+
+
+<h2>Contenidos</h2>
+<ol>
+	<li><a href="#Warning">Advertencia</a></li>
+	<li><a href="#Server">Consideraciones del servidor</a></li>
+	<li><a href="#Upgrade">Actualizando desde PostNuke 0.76x</a></li>
+	<li><a href="#Caution">Advertencia</a></li>
+	<li><a href="#Themes">Actualizando los Themes</a></li>
+	<li><a href="#Modules">Third Party Modules</a></li>
+	<li><a href="#Other">Other Directories</a></li>
+	<li><a href="#Final">Nota Final</a></li>
+</ol>
+
+<h2 id="Warning">1. Advertencia</h2>
+<p>Tu instalaci&oacute;n de PostNuke debe ser actualizada a PostNuke 0.764 antes 
+de intentar actualizarse a v1.0.  Actualizaciones desde versiones anteriores 
+no son soportadas.  Por favor ten en cuenta que la serie 0.7x de PostNuke no ser&aacute;n 
+soportadas m&aacute;s por el Equipo de Zikula despu&eacute;s del 1ro de Julio del 2009.</p>
+
+<h2 id="Server">2. Consideración del servidor</h2>
+<p>Antes de comenzar tu actualizaci&oacute;n, hay una gu&iacute;a y algunos requerimientos que debes considerar para hacer la actualizaci&oacute;n, instalaci&oacute;n, ejecuci&oacute;n, y aseguramiento de Zikula algo f&aacute;l. Por favor lee el <a href="software-reccomendations.html">codumento de consideraciones respecto a software</a>.</p>
+
+<h2 id="Upgrade">3. Actualizando desde PostNuke 0.76x</h2>
+<p>Por favor sigue los siguientes pasos en orden, y lee cada uno en detalle antes 
+de proceder.  Si las instrucciones se siguen al pie de la letra, la actualizaci&oacute;n 
+debe proceder casi sin problemas.</p>
+<ol>
+	<li><a href="#Backup">Haz una copia de respaldo (backup) de tu base de datos y archivos</a></li>
+	<li><a href="#Prepare">Prepara tu instalaci&oacute;n 0.76x</a></li>
+	<li><a href="#Config">Actualiza los datos del config.php</a></li>
+	<li><a href="#Run">Ejecuta el upgrade.php</a></li>
+	<li><a href="#Clean">Remover archivos</a></li>
+</ol>
+
+
+<h3 id="Backup">1. Haz una copia de respaldo (backup) de tu base de datos y archivos</h3>
+<p>Es vital que hagas una copia de respaldo de tu base de datos 0.76x y de los
+archivos, antes de proceder con la actualizaci&oacute;n. la actualizaci&oacute;n no tiene vuelta atr&aacute;s,
+por lo tanto la &uacute;nica soluci&oacute;n es restaurar el backup si ocurre alg&uacute;n problema.
+Para hacer una copia de respaldo de tu base de datos, trata de usar una herramienta
+como <a href="http://www.phpmyadmin.org">phpMyAdmin</a> o alternativamente usa 
+SSH o el panel de control de tu hosting.  Instrucciones completas y tutoriales 
+de c&oacute;mo hacer un backup de una base de datos pueden encontrarse buscando en la Web.</p>
+
+<h3 id="Prepare">2. Prepara tu instalaci&oacute;n 0.76x</h3>
+<p>Inicia sesi&oacute;n en tu sitio PostNuke con tu cuenta de administrador y aseg&uacute;rate que 
+cada uno de los siguientes m&oacute;dulos est&aacute;n instalados y activados.  Todos est&aacute;n incluidos 
+en las 0.76x - recuerda, s&oacute;lo desde estas versiones es posible actualizar a Zikula v1.0.</p>
+
+<ol>
+<li>Admin</li>
+<li>Admin_Messages</li>
+<li>Blocks</li>
+<li>Groups</li>
+<li>Header_Footer</li>
+<li>legal</li>
+<li>Mailer</li>
+<li>Permissions</li>
+<li>pnRender</li>
+<li>Search</li>
+<li>Settings</li>
+<li>User</li>
+<li>Xanthia</li>
+</ol>
+
+<p>Los dem&aacute;s m&oacute;dulos son opcionales, pues el n&uacute;cleo de Zikula v1.0 se redujo 
+removiendo los m&oacute;dulos de contenido aparte.  Tu puedes actualizarlos por separado 
+descargando el paquete de ValueAddons distribuido en el NOC.  Una vez completes este 
+paso tu base de datos est&aacute; lista para ser actualizada.</p>
+
+<p>Finalmente, elimina todos tus archivos del sitio PostNuke 0.76x.  Los archivos
+en Zikula v1.0 han cambiado dram&aacute;ticamente y este paso es necesario para evitar 
+conflictos durante el proceso de actualizaci&oacute;n.  Se sugiere mover todos los archivos 
+a una subcarpeta y luego volver a copiar los archivos (como m&oacute;dulos de terceras partes, 
+themes y descargas) que necesites una vez la actualizaci&oacute;n sea completada.  Una vez que
+los archivos de tu .76x han sido eliminados/movidos, sube los archivos de Zikula v1.0 
+a tu hosting en su lugar. Como has subido una nueva carpeta pnTemp, aseg&uacute;rate,
+que sea escribible junto con todas sus subcarpetas (chmod -R 777).</p>
+
+<h3 id="Config">3. Actualiza los datos del config.php</h3>
+<p>El archivo config.php fue movido a la carpeta /config.  Abre el archivo 
+config.php incluido en Zikula v1.0 y añade la informaci&oacute;n de tu base de datos 
+en las siguientes l&iacute;neas:</p>
+
+<p>$PNConfig['System']['prefix']<br />
+$PNConfig['DBInfo']['default']['dbuname']<br />
+$PNConfig['DBInfo']['default']['dbpass']<br />
+$PNConfig['DBInfo']['default']['dbname']</p>
+
+<p>Si copias los valores codificados de tu archivo config.php de la 0.76x config.php aseg&uacute;rate que est&eacute;:<br />
+$PNConfig['DBInfo']['default']['encoded'] = 1;</p>
+
+<p>Adicionalmente edita la siguiente l&iacute;nea:<br />
+$PNConfig['System']['installed'] = 1;</p>
+
+<p>En algunos casos tambi&eacute;n es necesario editar la base de datos, su tipo y el host, si est&aacute;s usando una diferente a la original.</p>
+
+<h3 id="Run">4. Ejecuta el upgrade.php</h3>
+<p>Para actualizar tu base de datos, ejecuta el archivo upgrade.php en tu navegador.  
+Necesitar&aacute;s de nuevo las credenciales de administrador para proceder.  
+Sigue las instrucciones mostradas para completar el proceso de actualizaci&oacute;n.</p>
+
+<p><strong>Nota:</strong> Zikula v1.0 remueve el mensaje del pie de página de la interfaz de administración,
+así que dicho mensaje desaparecerá después de la actualización.  Te recomendamos digitarlo de nuevo
+en las plantillas de tu Theme.  Como referencia, el proceso de actualización, almacena una copia de tu antiguo
+pie de página en el directorio pnTemp para su fácil recuperación.</p>
+
+<p><strong>Nota:</strong> Por razones de rendimiento, los permisos de usuario ya no existen en Zikula 1.0.  Se recomienda convertir cualquier permiso de usuario que estés usando a un permiso grupal antes de la actualización.</p>
+
+<h3 id="Clean">5. Remover archivos</h3>
+<p>Finalmente, elimina los archivos upgrade.php, install.php y la carpeta install 
+del sistema de archivos de tu sitio.</p>
+
+<h2 id="Caution">Advertencia</h2>
+<p>Versiones anteriores de PostNuke a menudo han sido modificadas para alterar
+las tablas de la base de datos añadiendo campos, cambiando nombres, etc.  Debe notarse
+que Zikula no soporta ninguna modificaci&oacute;n del c&oacute;digo del n&uacute;cleo o de la estructura
+de los datos. Zikula ha sido diseñado para ser lo suficientemente flexible
+para evitar la necesidad de modificar el n&uacute;cleo, pero si encuentras que falta algo
+que puede ser de uso genralizado, por favor env&iacute;a una petici&oacute;n al feature request
+tracker en <a href="http://code.zikula.org">code.zikula.org</a>.</p>
+
+
+<h2 id="Themes">Actualizando los Themes</h2>
+<p>Zikula v1.0 ha reconfigurado la estructura del nuevo m&oacute;dulo theme, ahora simplemente llamado Themes (Xanthia versi&oacute;n 3). Si est&aacute;s usando un theme basado en Xanthia 2, Zikula v1.0 incluye una opci&oacute;n para actualizarlo. Para usar esta opci&oacute;n dale permisos de escritura (chmod -R 777) a tu carpeta themes. Ve al panel de administraci&oacute;n del m&oacute;dulo Themes y dale click en la opci&oacute;n de actualizar. Por favor nota que esta es una herramienta, no un script de actualizaci&oacute;n definitivo. Para themes cl&aacute;sicos Xanthia este funcionar&aacute; bien, para themes m&aacute;s complejos, el script <em>puede</em> que no actualize completamente tu theme. Deber&aacute;s editar manualmente algunas partes de tu theme. Para themes no-Xanthia (ej. AutoTheme) por favor consulta a tu proveedor de motor de themes.</p>
+
+<h2 id="Modules">M&oacute;dulos de terceras partes</h2>
+<p>Ahora que el n&uacute;cleo est&aacute; actualizado, es hora de a&ntilde;adir los m&oacute;dulos de terceras partes que usaba la versi&oacute;n .76x y que no est&aacute;n en el sitio. Aseg&uacute;rate de verificar la compatibilidad de las versiones pues muchos m&oacute;dulos ofrecen una versi&oacute;n diferente para Zikula 1.0. Tambi&eacute;n aseg&uacute;rate de copiar las carpetas especiales que usen cualquiera de estos m&oacute;dulos.</p>
+
+<h2 id="Other">Otras carpetas</h2>
+<p>Tambi&eacute;n puedes necesitar copiar o fusionar los archivos en otras carpetas. Esto aplica especialmente a la carpeta /images. Por ejemplo, las im&aacute;genes de las subcarpetas topics, avatars, y por el estilo, son almacenadas en esa carpeta y deben ser copiadas al nuevo sitio. Este tambi&eacute;n es un gran momento para limpiar las im&aacute;genes extra o sibcarpetas que ya no se necesitan.</p>
+
+<h2 id="Final">Nota Final</h2>
+<p>Felicitaciones!  Tu actualizaci&oacute;n est&aacute; completa.  Esperamos que disfrutes usar 
+esta nueva versi&oacute;n de Zikula!. Si tienes algún comentario, por favor usa el foro en <a href="http://www.dev-zikula.com" title="La Comunidad Hispana Zikula">http://www.dev-zikula.com</a>.</p>
+
+<p>Atentamente,<br />
+
+El Equipo Zikula</p>
+
+</body>
+</html>

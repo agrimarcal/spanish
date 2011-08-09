@@ -1,0 +1,101 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Instrucciones de Instalaci&oacute;n de Zikula</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"  />
+</head>
+
+<body>
+<p><strong>NOTA:  ESTE DOCUMENTO CONTIENE INFORMACI&Oacute;N IMPORTANTE ACERCA DE ZIKULA.  POR FAVOR L&Eacute;ELO TODO ANTES DE CONTINUAR.</strong></p>
+
+<!--
+<div style="border: 1px dotted black; margin: 10px; padding: 5px; text-align: center;">
+Esta versi&oacute;n de PostNuke es un Release Candidate (RC) y todav&iacute;a no est&aacute; destinado para su uso en sitios web
+en producci&oacute;n. Est&aacute; destinada para prop&oacute;sitos de desarrollo y pruebas.<br />
+Por favor pru&eacute;bala y reporta los errores/bugs al <a href="http://noc.zikula.org/tracker/?group_id=5">tracker</a>.  
+Mientras m&aacute;s bugs sean identificados, m&aacute;s r&aacute;pido tendremos la versi&oacute;n final.<br />
+</div>
+-->
+
+<h1>Instrucciones de Instalaci&oacute;n de Zikula</h1>
+<p>Documentaci&oacute;n m&aacute;s detallada est&aacute; disponible en el  
+<a href="http://community.zikula.org/Wiki-tag-UserDocs.htm" title="Wiki de documentaci&oacute;n">Wiki de documentaci&oacute;n</a> en 
+<a href="http://community.zikula.org" title="Comunidad Zikula">http://community.zikula.org</a>.  
+Soporte y ayuda con la instalaci&oacute;n de Zikula v1.0 puede ser obtenida en la <a href="http://www.dev-postnuke.com">Comunidad Hispana de Zikula</a>.</p>
+
+
+<h2>Contenidos</h2>
+<ol>
+	<li><a href="#AB">Zikula: La versi&oacute;n adam_baum</a></li>
+	<li><a href="#Server">Consideraciones del servidor</a></li>
+	<li><a href="#New">Nueva instalaci&oacute;n</a></li>
+    <ul>
+        <li><a href="#Graph">Instalador gr&aacute;fico v&iacute;a Web</a></li>
+      <li><a href="#Manual">Importaci&oacute;n manual del volcado SQL</a></li>
+    </ul>
+	</li>
+	<li><a href="#Final">Nota final</a></li>
+</ol>
+
+<h2 id="AB">Zikula: La versi&oacute;n adam_baum</h2>
+<p>Zikula es un framework de aplicaciones software libre, para sitios Web din&aacute;micos.
+El n&uacute;cleo del sistema incluye un API completo sobre el cual desarrollos de terceras partes pueden ser construidos.  
+Zikula tiene una comunidad muy fuerte, la cual provee una gran variedad de extensiones para el sistema y un centro de soporte en los <a href="http://community.zikula.org/module-Forum.htm" title="Foros de Zikula">Foros de Zikula</a> y en la <a href="http://www.dev-zikula.com/" title="Comunidad hispana de Zikula">Comunidad hispana de Zikula</a>.</p>
+
+<p>Le damos la bienvenida las contribuciones de cualquiera, mira 
+<a href="http://community.zikula.org/module-Pages-display-pid-6.htm" title="Contribuye al proyecto Zikula">C&oacute;mo puedes ayudar</a>.</p>
+
+<h2 id="Server">2. Consideraciones del servidor</h2>
+<p>Antes de comenzar tu actualizaci&oacute;n, hay una gu&iacute;a y algunos requerimientos que debes considerar para hacer la actualizaci&oacute;n, instalaci&oacute;n, ejecuci&oacute;n, y aseguramiento de Zikula algo f&aacute;l. Por favor lee el <a href="software-reccomendations.html">codumento de consideraciones respecto a software</a>.</p>
+
+<h2 id="New">3. Nueva Instalaci&oacute;n</h2>
+<p>Hay dos m&eacute;todos de instalaci&oacute;n para Zikula:</p>
+<ul>
+	<li><a href="#Graph">Instalador gr&aacute;fico v&iacute;a Web</a></li>
+	<li><a href="#Manual">Importaci&oacute;n manual del volcado SQL</a></li>
+</ul>
+
+
+<h3 id="Graph">Instalaci&oacute;n gr&aacute;fica</h3>
+<p>Para usar el instalador, simplemente ejecuta el script install.php en la raiz de tu sitio Zikula en tu 
+navegador, ej. <em>http://www.ejemplo.com/install.php</em>.  Si quieres instalar Zikula en una subcarpeta 'foo' la URL ser&aacute; 
+<em>http://www.ejemplo.com/foo/install.php</em>.</p>
+
+<p>El instalador te provee instrucciones en el camino.  Zikula requiere una base de datos
+y puedes ahorrar problemas si la creas <em>antes</em> de correr el script de instalaci&oacute;n.  Aunque es posible que el instalador de Zikula trate de crear 
+la base de datos, esto no siempre ser&aacute; posible pues requerir&aacute;s 
+altos niveles de acceso a la base de datos.  En la mayor&iacute;a de los hostings esto no siempre est&aacute; disponible as&iacute; que debes 
+crear la base de datos a trav&eacute;s del panel de control administrativo.  Si haces esto, anota 
+el nombre de la base de datos, nombre de usuario y contraseña para usarlo en el instalador.</p>
+
+<p>Una vez que el proceso de instalaci&oacute;n se ha completado, puedes visitar tu sitio Zikula abriendo el index.php en tu navegador, ej. <em>http://www.ejemplo.com/index.php</em>.  
+En la gran mayor&iacute;a de casos, esta se abrir&aacute; autom&aacute;ticamente cuando escribas <em>http://www.ejemplo.com</em> en tu navegador.</p>
+
+
+<h2 id="Manual">Importaci&oacute;n manual del volcado SQL (No recomendado)</h2> 
+<p>Si deseas importar el volcado SQL para instalar Zikula manualmente, lo puedes acer a trav&eacute;s de
+una herramienta como <a href="http://www.phpmyadmin.org">phpMyAdmin</a>.  El volcado proporcionado es de una base de datos MySQL 5.x, y pueda que no funcione 
+con otras bases de datos, o versiones de MySQL.  Una vez hayas importado el volcado SQL, deber&aacute;s editar manualmente
+el archivo config/config.php y añadir los detalles correspondientes de la conexi&oacute;n a la base de datos el el &aacute;rea reservada para la
+conexi&oacute;n por 'defecto'.  Los valores para nombre de usuario y contraseña deber&iacute;an ser codificados en base64 para seguridad adicional
+(hay varios codificadores disponibles en Internet).  Con esta instalaci&oacute;n, el nombre de usuario del administrador 
+es "admin" y la contrase&ntilde;a es "Password" (sin las comillas).</p>
+
+
+<h2 id="Final">4. Nota final</h2>
+<p>Las modificaciones al c&oacute;digo fuente del n&uacute;cleo del sistema de PostNuke o a la base de datos no son soportados.  Hacer esto puede causar 
+problemas graves cuando quieras actualizar el sistema el el futuro y por lo tanto esos 'hacks' no son
+recomendados.  PostNuke tiene un sistema de extensiones muy flexible y varias formas de personalizar el sistema
+por eso te recomendamos que consultes acerca de esto en la <a href="http://community.zikula.org/Wiki-tag-DeveloperDocs.htm">documentaci&oacute;n para desarrolladores</a>.</p>
+
+<p>Esperamos que disfrutes usando esta versi&oacute;n de Zikula.</p>
+
+<p>Atentamente,<br />
+
+El Equipo Zikula</p>
+
+</body>
+</html>
