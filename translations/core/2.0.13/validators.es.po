@@ -1,0 +1,8 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: template\n"
+
+msgid "Could not json_decode the string you entered."
+msgstr "No se pudo json_decodificar la cadena que ha introducido."
